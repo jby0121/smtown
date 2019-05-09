@@ -49,11 +49,11 @@ $(document).ready(function(){
         minSlides : 5,
         maxSlides : 5,
         moveSlides : 1,
-        slideWidth : 208
+        slideWidth : 208,
+        touchEnabled : false
     });
 
     var thumbsLis = document.querySelectorAll(".video_item_thumb > li");
-    console.log(thumbsLis);
     for (var i = 0; i < thumbsLis.length; i++ ) {
         thumbsLis[i].addEventListener("click", thumbsWork);
     }
@@ -76,7 +76,7 @@ $(document).ready(function(){
     var coverLis = coverSlide.querySelectorAll('li');
 
     var slideIndex = coverLis.length / 2;
-    var size = 232;
+    var size = 234;
     var currentSlide = ''; 
 
     //앞,뒤 4개 배열에 jump class 넣기
@@ -91,23 +91,28 @@ $(document).ready(function(){
     
     for (var i = 0; i < coverLis.length; i++){
         coverLis[i].addEventListener('click', coverWork);
-        function coverWork (e) {
-            currentSlide = e.currentTarget;
-            //active 지우기
-            for (var j = 0; j < coverLis.length; j++) {
-                coverLis[j].classList.remove("active");
-            }
-            //transform 
-            coverSlide.style.transition = 'transform 0.5s ease-in-out';
-
-            if (e.currentTarget.classList.contains("copy")){
-                slideIndex = (e.currentTarget.firstChild.dataset.slideIndex)*1 + 10;
-            } else {
-                slideIndex = e.currentTarget.firstChild.dataset.slideIndex;
-            }
-            coverSlide.style.transform = 'translateX(' + (-size * slideIndex) + 'px)'; 
+    };   
+    function coverWork (e) {
+        currentSlide = e.currentTarget;
+        //class remove
+        for (let j = 0; j < coverLis.length; j++) {
+            coverLis[j].classList.remove("active");
+            coverLis[j].classList.remove("zoom");
         }
-    };
+        currentSlide.classList.add("active");
+        setTimeout(function() {
+            currentSlide.classList.add("zoom");
+        }, 500);
+
+        coverSlide.style.transition = 'transform 0.5s ease-in-out';
+
+        if (e.currentTarget.classList.contains("copy")){
+            slideIndex = (e.currentTarget.firstChild.dataset.slideIndex)*1 + 10;
+        } else {
+            slideIndex = e.currentTarget.firstChild.dataset.slideIndex;
+        }
+        coverSlide.style.transform = 'translateX(' + (-size * slideIndex) + 'px)'; 
+    }
 
     coverSlide.addEventListener('transitionend', jumpSlide);
     function jumpSlide (e) {
@@ -123,15 +128,9 @@ $(document).ready(function(){
             coverSlide.style.transform = 'translateX(' + (-size * slideIndex) + 'px)';
             currentSlide = coverLis[slideIndex]; 
         }
-        // setTimeout(function() {
-        //     currentSlide.classList.add("active");
-        //   }, 1000);
-        currentSlide.classList.add("active");
     }
     
-    //점프하게 되면 이동한 곳에 active가 없기 때문에 크게 확대한게 분명 무용지물일것.
-    //결국에 클릭시 하나 지우고 뺴고를 해야 할듯.
-    //해결 함.
+    //이미지가 돌고 커지는것을 setTimeout으로 늦게 넣어준다. 
 //1. 맨처음 시작할떄 coverLis를 복사해서 앞쪽에 넣어준다.
 //2. click을 할때 특정범위보다 작거나 크면 transform 없이 무브 먼저
 //3. 이동하는 애니메이션 효과 적용
