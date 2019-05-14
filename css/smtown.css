@@ -685,22 +685,25 @@ span.type {
 	font-weight: 400;
 }
 .album_slide {
-	/* border: 1px solid lime; */
+	border: 1px solid lime;
 	width: 100%;
-	overflow: hidden;
+	/* overflow: hidden; */
 }
 .album_slide .cover_list {
 	position: relative;
-	display: flex;
-	margin: 0 auto;
+	left: 50%;
 	width: 152px;
-	/* height: 152px; */
+	height: 152px;
+	border: 1px solid blue;
 }
 .album_slide .cover_list li {
-	position: relative;
+	border: 1px solid red;
+	position: absolute;
+	top: 0;
+	left: 0;;
 	margin-right: 80px;
 	margin-bottom: 260px;
-	width: 342px;
+	width: 152px;
 	height: 152px;
 	transition: all 0.5s ease-in-out;
 }
@@ -715,8 +718,8 @@ span.type {
 	/* border: 1px solid yellow; */
 	position: absolute;
 	top: 0;
-	left: 50%;
-    margin-left: -76px;
+	left: 0;
+    /* margin-left: -76px; */
 	transition: all 0.5s ease-in-out;
 	width: 152px;
 	border-radius: 50%;

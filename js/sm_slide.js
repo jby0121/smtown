@@ -76,22 +76,39 @@ $(document).ready(function(){
     var coverLis = coverSlide.querySelectorAll('li');
 
     var slideIndex = coverLis.length / 2;
-    var size = 234;
+    var size = 231;
     var currentSlide = ''; 
 
     //앞,뒤 4개 배열에 jump class 넣기
-    for (var i = 0; i < 4; i++) {
+    for (let i = 0; i < 4; i++) {
         coverLis[i].classList.add("jump");
     }
-    for (var i = coverLis.length - 1; i > coverLis.length-5; i--) {
+    for (let i = coverLis.length - 1; i > coverLis.length-5; i--) {
         coverLis[i].classList.add("jump");
     }
-    //슬라이드 처음 시작할떄 중간에 시작하기
+    //슬라이드 처음 시작할때 중간에서 시작하기
     coverSlide.style.transform = 'translateX(' + (-size * slideIndex) + 'px)';
     
     for (var i = 0; i < coverLis.length; i++){
         coverLis[i].addEventListener('click', coverWork);
     };   
+    
+    //coverLis에 left값을 주는 기능
+    function moveLis () {
+        var left = 0;
+        for (let i = 0; i <coverLis.length; i++) {
+            if (coverLis[i].classList.contains("active")) {
+                coverLis[i].style.left = (left + 114) + 'px';
+                left += 440;                       
+            } else {
+                coverLis[i].style.left = left + 'px'; 
+                left += 212;   
+            }
+        }
+    }
+    moveLis();
+
+    
     function coverWork (e) {
         currentSlide = e.currentTarget;
         //class remove
@@ -103,7 +120,7 @@ $(document).ready(function(){
         setTimeout(function() {
             currentSlide.classList.add("zoom");
         }, 500);
-
+        moveLis();
         coverSlide.style.transition = 'transform 0.5s ease-in-out';
 
         if (e.currentTarget.classList.contains("copy")){
@@ -129,11 +146,5 @@ $(document).ready(function(){
             currentSlide = coverLis[slideIndex]; 
         }
     }
-    
-    //이미지가 돌고 커지는것을 setTimeout으로 늦게 넣어준다. 
-//1. 맨처음 시작할떄 coverLis를 복사해서 앞쪽에 넣어준다.
-//2. click을 할때 특정범위보다 작거나 크면 transform 없이 무브 먼저
-//3. 이동하는 애니메이션 효과 적용
-//4. 앨범소개 매치 수정 조건문을 인덱스로 하지말고 배열순서로 수정 인덱스는 복사한것도 0~9까지로만 통일
 
 });
