@@ -668,6 +668,25 @@ span.type {
 /* main_album */
 .main_album {
 	position: relative;
+	height: 670px;
+}
+.main_album .line_box .line_img {
+	position: absolute;
+	top: -720px;
+	left: -620px;
+	transition: all 2s ease-out;
+	width: 1600px;
+	height: 1614px;
+	background: url('../images/line_album.png') no-repeat center;
+}
+.main_album .line_box .line_img.active {
+	top: -820px;
+	left: -720px;   
+}
+.album_wrap {
+	position: relative;
+	height: 100%;;
+	overflow: hidden;
 }
 .main_album .contains {
 	box-sizing: border-box;
@@ -675,7 +694,7 @@ span.type {
 	line-height: 26px;
 	font-size: 16px;
 	font-weight: 700;
-	padding-top: 95px;
+	padding-top: 55px;
 	padding-left: 50px;
 }
 .main_album .bx-wrapper {
@@ -685,11 +704,19 @@ span.type {
 	font-weight: 400;
 }
 .album_slide {
+	position: absolute;
+	top: 300px;
+	left: 0;
 	width: 100%;
-	/* overflow: hidden; */
+}
+.album_slide:after {
+	content: '';
+	display: block;
+	clear: both;
 }
 .album_slide .cover_list {
-	position: relative;
+	position: absolute;
+	top: 0;
 	left: 50%;
 	width: 152px;
 	height: 152px;
