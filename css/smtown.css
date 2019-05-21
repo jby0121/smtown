@@ -685,7 +685,6 @@ span.type {
 	font-weight: 400;
 }
 .album_slide {
-	border: 1px solid lime;
 	width: 100%;
 	/* overflow: hidden; */
 }
@@ -694,10 +693,8 @@ span.type {
 	left: 50%;
 	width: 152px;
 	height: 152px;
-	border: 1px solid blue;
 }
 .album_slide .cover_list li {
-	border: 1px solid red;
 	position: absolute;
 	top: 0;
 	left: 0;;
@@ -708,18 +705,15 @@ span.type {
 	transition: all 0.5s ease-in-out;
 }
 .album_slide .cover_list li a {display: block;
-	/* border: 1px solid red; */
 	width: 152px;
 }
 .album_slide .cover_list li.active a {
 	width: 342px;
 }
 .album_slide .cover_list li img {
-	/* border: 1px solid yellow; */
 	position: absolute;
 	top: 0;
 	left: 0;
-    /* margin-left: -76px; */
 	transition: all 0.5s ease-in-out;
 	width: 152px;
 	border-radius: 50%;

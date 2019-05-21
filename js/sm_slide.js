@@ -64,6 +64,7 @@ $(document).ready(function(){
         e.currentTarget.classList.add("active");
         }
     }
+    
     // album_list
     $('.album_list').bxSlider({
         mode:'fade',
@@ -72,30 +73,24 @@ $(document).ready(function(){
         pagerCustom:'#album_pager'
     });
 
-    var coverSlide = document.querySelector('.cover_list');
+    // album_slide start
+    const coverSlide = document.querySelector('.cover_list');
     var coverLis = coverSlide.querySelectorAll('li');
 
-    var slideIndex = coverLis.length / 2;
-    var size = 231;
-    var currentSlide = ''; 
+    let currentIndex = coverLis.length / 2;
+    const size = 231;
 
-    //앞,뒤 4개 배열에 jump class 넣기
-    for (let i = 0; i < 4; i++) {
-        coverLis[i].classList.add("jump");
-    }
-    for (let i = coverLis.length - 1; i > coverLis.length-5; i--) {
-        coverLis[i].classList.add("jump");
-    }
     //슬라이드 처음 시작할때 중간에서 시작하기
-    coverSlide.style.transform = 'translateX(' + (-size * slideIndex) + 'px)';
+    coverSlide.style.transform = 'translateX(' + (-size * currentIndex) + 'px)';
     
-    for (var i = 0; i < coverLis.length; i++){
+    for (let i = 0; i < coverLis.length; i++){
         coverLis[i].addEventListener('click', coverWork);
     };   
     
     //coverLis에 left값을 주는 기능
-    function moveLis () {
-        var left = 0;
+    function lisLeft () {
+        coverLis = coverSlide.querySelectorAll('li');
+        let left = 0;
         for (let i = 0; i <coverLis.length; i++) {
             if (coverLis[i].classList.contains("active")) {
                 coverLis[i].style.left = (left + 114) + 'px';
@@ -106,11 +101,26 @@ $(document).ready(function(){
             }
         }
     }
-    moveLis();
+    lisLeft();
 
-    
+    //건너뛴 li 갯수에 따라 이동방향 넣어주는 기능
+    function moveLis (currentSlide) {
+        let nextIndex = $(currentSlide).index();
+        coverLis = coverSlide.querySelectorAll('li');
+        if (currentIndex < nextIndex) {
+            for (let i = 0; i < (nextIndex - currentIndex); i++) {
+                coverSlide.appendChild(coverLis[i]);
+            }
+        } else if (currentIndex > nextIndex){
+            for (let i = coverLis.length; i > nextIndex + currentIndex; i--) {
+                coverSlide.insertBefore(coverLis[coverLis.length-1], coverLis[0]);
+                coverLis = coverSlide.querySelectorAll('li');
+            }
+        }
+    }
+
     function coverWork (e) {
-        currentSlide = e.currentTarget;
+        let currentSlide = e.currentTarget;
         //class remove
         for (let j = 0; j < coverLis.length; j++) {
             coverLis[j].classList.remove("active");
@@ -119,32 +129,11 @@ $(document).ready(function(){
         currentSlide.classList.add("active");
         setTimeout(function() {
             currentSlide.classList.add("zoom");
-        }, 500);
-        moveLis();
-        coverSlide.style.transition = 'transform 0.5s ease-in-out';
-
-        if (e.currentTarget.classList.contains("copy")){
-            slideIndex = (e.currentTarget.firstChild.dataset.slideIndex)*1 + 10;
-        } else {
-            slideIndex = e.currentTarget.firstChild.dataset.slideIndex;
-        }
-        coverSlide.style.transform = 'translateX(' + (-size * slideIndex) + 'px)'; 
+        }, 500);  
+        moveLis (currentSlide);
+        lisLeft();
+        currentIndex = $(currentSlide).index();
     }
-
-    coverSlide.addEventListener('transitionend', jumpSlide);
-    function jumpSlide (e) {
-        if (currentSlide.className === 'jump') {
-            coverSlide.style.transition = "none";
-            slideIndex = Number(slideIndex) + coverLis.length / 2; 
-            coverSlide.style.transform = 'translateX(' + (-size * slideIndex) + 'px)';
-            currentSlide = coverLis[slideIndex];
-        }
-        if (currentSlide.className === 'copy jump') {
-            coverSlide.style.transition = "none";
-            slideIndex = Number(slideIndex) - coverLis.length / 2; 
-            coverSlide.style.transform = 'translateX(' + (-size * slideIndex) + 'px)';
-            currentSlide = coverLis[slideIndex]; 
-        }
-    }
+    // album_slide end
 
 });
