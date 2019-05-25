@@ -136,4 +136,45 @@ $(document).ready(function(){
     }
     // album_slide end
 
+    var colCount = 3;
+    var colWidth = 340;
+    var margin = 28;
+    var blocks = [];
+    const feedWrap = document.querySelector('.feed_wrap');
+
+    $(document).ready(function() {
+        setupBlocks();
+      });
+
+    function setupBlocks() {
+        console.log(blocks);
+        for(let i = 0; i < colCount; i++){
+            blocks.push(margin);
+        }
+        positionBlocks();
+        feedWrap.style.height = Array.max(blocks) + 'px';
+    }
+
+    function positionBlocks() {
+        $('.feed_box').each(function(){
+            var min = Array.min(blocks);
+            var index = $.inArray(min, blocks);
+            var leftPos = margin+(index*(colWidth+margin));
+            $(this).css({
+                'left':leftPos+'px',
+                'top':min+'px'
+            });
+            blocks[index] = min+$(this).outerHeight()+margin;
+        });	
+    }
+
+    // Function to get the Min value in Array
+    Array.min = function(array) {
+            return Math.min.apply(Math, array);
+    };
+    // Function to get the Max value in Array
+    Array.max = function (array) {
+        return Math.max.apply(Math, array);
+    };
+
 });
