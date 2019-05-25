@@ -421,6 +421,11 @@ span.type {
 	position: absolute;
 	top: -180px;
 	right: -300px;
+	transition: all 2s ease-out;
+}
+.main_issue .line_box .line_img.active {
+	top: -280px;
+	right: -400px;
 }
 .main_issue .contains {
 	z-index: 10;
@@ -677,6 +682,7 @@ span.type {
 	width: 1600px;
 	height: 1614px;
 	background: url('../images/line_album.png') no-repeat center;
+	transition: all 2s ease-out;
 }
 .main_album .line_box .line_img.active {
 	top: -820px;
@@ -757,11 +763,33 @@ span.type {
 }
 .main_feed .main_feed_top {}
 .main_feed .main_feed_top .contains {}
-.main_feed .main_feed_top .contains .feed_circle{}
+.main_feed .main_feed_top .contains .feed_circle{
+	position: absolute;
+    left: 0;
+    top: -35px;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: #b0b7c0;
+	z-index: 5;
+	animation: obj_ani_05 40s infinite ease-out;
+}
+@keyframes obj_ani_05 {
+	0% {
+		left: 0;
+	}
+	50% {
+		left: 1020px;
+	}
+	100% {
+		left: 0;
+	}
+}
 .main_feed .feed_wrap {}
 .main_feed .feed_wrap .contains {}
 .main_feed .feed_wrap .feed_box {
 	position: absolute;
+	z-index: 10;
 	width: 340px;
 	box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }

@@ -177,4 +177,47 @@ $(document).ready(function(){
         return Math.max.apply(Math, array);
     };
 
+    //scroll Works start
+    const htmlElem = document.querySelector("html");
+    let ticking = false;
+    const issue = document.querySelector('.issue_wrap');
+    const issueLine = document.querySelector('.main_issue .line_img');
+    const albumLine = document.querySelector('.main_album .line_box .line_img');
+
+    window.addEventListener("scroll", function(e) {         
+        if (!ticking) {
+            window.requestAnimationFrame(function() {
+                var scrollHight = htmlElem.scrollTop;
+                console.log(scrollHight);
+                issueTop(scrollHight);
+                moveIssueLine(scrollHight);
+                moveAlbumLine(scrollHight);
+                ticking = false;
+        });
+          ticking = true;
+        } //스크롤 이벤트 최적화
+    });
+    
+    function issueTop (scrollHight) {
+        if (scrollHight/5 < 130) {
+            issue.style.top = scrollHight/5 +'px';
+        } else {
+            issue.style.top = '130px';
+        }
+    }
+    function moveIssueLine (scrollHight) {
+        if (scrollHight > 1000) {
+            issueLine.classList.add('active');
+        } else if (scrollHight < 1000) {
+            issueLine.classList.remove('active');
+        }    
+    }
+    function moveAlbumLine (scrollHight) {
+        if (scrollHight > 1700) {
+            albumLine.classList.add('active');
+        } else if (scrollHight < 1700) {
+            albumLine.classList.remove('active');
+        }    
+    }
+    //scroll Works end
 });
