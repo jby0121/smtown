@@ -46,13 +46,20 @@ main .bx-wrapper .bx-pager {
 }
 /*header*/
 header {
-	position: fixed;
+	position: absolute;
 	min-width: 700px; 
 	top: 0;
 	left: 0;
 	right: 0;
 	height: 70px;
 	z-index: 1000;
+	color: #ffffff;
+
+}
+header.active {
+	position: fixed;
+	color: #000000;
+	background-color: #ffffff;
 }
 header:after {
 	content: '';
@@ -64,9 +71,9 @@ header:after {
 	float: left;
 }
 .sm_logo a {
-	color: #fff;
 	font-size: 18px;
 	font-weight: 900;
+	color: inherit;
 }
 
 ul.sm_nav {
@@ -81,7 +88,7 @@ ul.sm_nav li + li {
 	margin-left: 20px;
 }
 ul.sm_nav li a {
-	color: #fff;
+	color: inherit;
 	font-size: 15px;
 }
 .sm_search a {
@@ -98,7 +105,7 @@ ul.sm_nav li a {
 	text-indent: -99999px;
 	height: 0;
 }
-.sm_search.active a svg {
+header.active .sm_search a svg {
 	fill: #000000;
 }
 .sm_search .pop_search {
@@ -144,7 +151,7 @@ ul.sm_nav li a {
 .sm_toggle a.btn_toggle span.bar3 {
 	top: 14px;
 }
-.sm_toggle.active a.btn_toggle span {
+header.active .sm_toggle a.btn_toggle span {
 	border-bottom: 2px solid #000000;
 }
 .sm_toggle.active a.btn_toggle span.bar1 {

@@ -183,15 +183,18 @@ $(document).ready(function(){
     const issue = document.querySelector('.issue_wrap');
     const issueLine = document.querySelector('.main_issue .line_img');
     const albumLine = document.querySelector('.main_album .line_box .line_img');
+    const header = document.querySelector('header');
+    let prevScroll = 0;
 
     window.addEventListener("scroll", function(e) {         
         if (!ticking) {
-            window.requestAnimationFrame(function() {
+            window.requestAnimationFrame(function(e) {
                 var scrollHight = htmlElem.scrollTop;
-                console.log(scrollHight);
                 issueTop(scrollHight);
                 moveIssueLine(scrollHight);
                 moveAlbumLine(scrollHight);
+                headerWork (scrollHight);
+                prevScroll = scrollHight;
                 ticking = false;
         });
           ticking = true;
@@ -219,5 +222,16 @@ $(document).ready(function(){
             albumLine.classList.remove('active');
         }    
     }
+    function headerWork (currentScroll) {
+        if (currentScroll < prevScroll) {
+            header.classList.add('active');
+        } else if (currentScroll > prevScroll){
+            header.classList.remove('active');
+        } 
+        if (currentScroll == 0) {
+            header.classList.remove('active');
+        } 
+    }
+
     //scroll Works end
 });
