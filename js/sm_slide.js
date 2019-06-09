@@ -142,10 +142,6 @@ $(document).ready(function(){
     var blocks = [];
     const feedWrap = document.querySelector('.feed_wrap');
 
-    $(document).ready(function() {
-        setupBlocks();
-      });
-
     function setupBlocks() {
         console.log(blocks);
         for(let i = 0; i < colCount; i++){
@@ -176,6 +172,10 @@ $(document).ready(function(){
     Array.max = function (array) {
         return Math.max.apply(Math, array);
     };
+
+    $(document).ready(function() {
+        setupBlocks();
+    });
 
     //scroll Works start
     const htmlElem = document.querySelector("html");
