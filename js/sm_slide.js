@@ -136,20 +136,11 @@ $(document).ready(function(){
     }
     // album_slide end
 
-    var colCount = 3;
-    var colWidth = 340;
-    var margin = 28;
-    var blocks = [];
-    const feedWrap = document.querySelector('.feed_wrap');
-
-    function setupBlocks() {
-        console.log(blocks);
-        for(let i = 0; i < colCount; i++){
-            blocks.push(margin);
-        }
-        positionBlocks();
-        feedWrap.style.height = Array.max(blocks) + 'px';
-    }
+    // feed start
+    const colCount = 3;
+    const colWidth = 340;
+    const margin = 28;
+    let blocks = [];
 
     function positionBlocks() {
         $('.feed_box').each(function(){
@@ -164,9 +155,18 @@ $(document).ready(function(){
         });	
     }
 
+    function setupBlocks() {
+        console.log(blocks);
+        for(let i = 0; i < colCount; i++){
+            blocks.push(margin);
+        }
+        positionBlocks();
+        $('.feed_wrap').height(Array.max(blocks));
+    }
+
     // Function to get the Min value in Array
     Array.min = function(array) {
-            return Math.min.apply(Math, array);
+        return Math.min.apply(Math, array);
     };
     // Function to get the Max value in Array
     Array.max = function (array) {
@@ -176,6 +176,8 @@ $(document).ready(function(){
     $(document).ready(function() {
         setupBlocks();
     });
+
+    // feed end
 
     //scroll Works start
     const htmlElem = document.querySelector("html");
