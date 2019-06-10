@@ -137,9 +137,12 @@ $(document).ready(function(){
     // album_slide end
 
     //feed start
-    $('.feed_wrap .contains').masonry({
+    var $grid = $('.feed_wrap').masonry({
         itemSelector: '.feed_box',
         gutter: 28
+    });
+    $grid.imagesLoaded().progress( function() {
+        $grid.masonry('layout');
     });
 
     //scroll Works start
