@@ -795,7 +795,6 @@ span.type {
 .main_feed .feed_wrap {}
 .main_feed .feed_wrap .contains {}
 .main_feed .feed_wrap .feed_box {
-	position: absolute;
 	z-index: 10;
 	margin-bottom: 28px;
 	width: 340px;

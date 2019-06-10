@@ -137,7 +137,7 @@ $(document).ready(function(){
     // album_slide end
 
     // feed start
-    $('.feed_wrap').masonry({
+    $('.feed_wrap .contains').masonry({
         itemSelector: '.feed_box',
         columnWidth: 340,
         gutter: 28
