@@ -679,7 +679,7 @@ span.type {
 /* main_album */
 .main_album {
 	position: relative;
-	height: 670px;
+	height: 725px;
 }
 .main_album .line_box .line_img {
 	position: absolute;
@@ -773,7 +773,7 @@ span.type {
 .main_feed .main_feed_top .contains .feed_circle{
 	position: absolute;
     left: 0;
-    top: -35px;
+    top: -60px;
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -797,6 +797,7 @@ span.type {
 .main_feed .feed_wrap .feed_box {
 	position: absolute;
 	z-index: 10;
+	margin-bottom: 28px;
 	width: 340px;
 	box-shadow: 0 1px 1px rgba(0,0,0,0.1);
 }
@@ -859,8 +860,7 @@ footer {
 	padding: 40px 0 70px 0;
 }
 .footer_contain {
-	width: 1100px;
-	padding: 0 20px;
+	padding: 0 20px 0 150px;
 	margin: 0 auto;
 }
 .footer_contain .logo {
@@ -907,9 +907,6 @@ footer {
 	display: block;
 	float: left;
 	margin-left: 12px;
-}
-.footer_contain .sns a img {
-	/* width:  */
 }
 
 
