@@ -141,6 +141,7 @@ $(document).ready(function(){
         itemSelector: '.feed_box',
         gutter: 28
     });
+
     $grid.imagesLoaded().progress( function() {
         $grid.masonry('layout');
     });
